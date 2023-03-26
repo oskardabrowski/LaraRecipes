@@ -13,4 +13,27 @@ class RecipesController extends Controller
             'recipes' => Recipe::all()
         ]);
     }
+    public function SingleRecipe(Recipe $recipe)
+    {
+        return view('pages.recipe', [
+            'recipe' => $recipe
+        ]);
+    }
+
+    public function Create()
+    {
+        return view('pages.create');
+    }
+
+    public function Save(Request $request) {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'type' => 'required',
+            'description' => 'required'
+        ]);
+
+        Recipe::create($formFields);
+
+        return redirect('/');
+    }
 }

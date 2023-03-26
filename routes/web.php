@@ -23,6 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RecipesController::class, 'index']);
 
-Route::get('/create', function () {
-    return view('pages.create');
+Route::get('/recipe/{recipe}', [RecipesController::class, 'SingleRecipe']);
+
+Route::post('/create', [RecipesController::class, 'Save']);
+
+Route::get('/create', [RecipesController::class, 'Create']);
+
+Route::get('/register', function () {
+    return view('pages.register');
 });
