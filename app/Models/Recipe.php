@@ -9,7 +9,7 @@ class Recipe extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'type', 'description'];
+    protected $fillable = ['title', 'type', 'description', 'image'];
 
     // public static function all()
     // {

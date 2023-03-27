@@ -6,8 +6,8 @@
             <h2 style="color: #EF3B2D">Add recipe</h2>
             <form style="width: 15rem;" method="POST" action="/create" enctype="multipart/form-data">
                 @csrf
-                {{-- <label>Add photo:</label>
-                <input style="width: 15rem;" type="file" name="image" /> --}}
+                <label>Add photo:</label>
+                <input style="width: 15rem;" type="file" name="image" />
                 <label class="mt-2">Add title:</label>
                 <input style="width: 15rem;" type="text" name="title" />
                 <label class="mt-2">Add type:</label>

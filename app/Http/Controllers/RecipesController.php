@@ -26,14 +26,22 @@ class RecipesController extends Controller
     }
 
     public function Save(Request $request) {
+        // dd($request);
         $formFields = $request->validate([
             'title' => 'required',
             'type' => 'required',
             'description' => 'required'
         ]);
 
+        if($request->hasFile('image')) {
+            $formFields['image'] = strval($request->file('image')->store('image', 'public'));
+            // dd($request->file('image')->store('images', 'public'));
+        }
+
+        // dd($formFields);
+
         Recipe::create($formFields);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Recipe Created!');
     }
 }
