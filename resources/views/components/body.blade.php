@@ -26,6 +26,7 @@
         integrity="sha512-YFENbnqHbCRmJt5d+9lHimyEMt8LKSNTMLSaHjvsclnZGICeY/0KYEeiHwD1Ux4Tcao0h60tdcMv+0GljvWyHg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script defer src="/js/RemoveAlert.js"></script>
     {{-- <script src="/js/bootsrtap5.js"></script>
     <script src="/js/swal.js"></script>
 

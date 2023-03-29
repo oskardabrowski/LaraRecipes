@@ -19,10 +19,21 @@ class RecipesController extends Controller
             'recipe' => $recipe
         ]);
     }
+    public function EditRecipe(Recipe $recipe)
+    {
+        return view('pages.edit', [
+            'recipe' => $recipe
+        ]);
+    }
 
     public function Create()
     {
         return view('pages.create');
+    }
+
+    public function DestroyRecipe(Recipe $recipe) {
+        $recipe->delete();
+        return redirect('/')->with('message', 'Recipe Deleted!');
     }
 
     public function Save(Request $request) {
@@ -43,5 +54,25 @@ class RecipesController extends Controller
         Recipe::create($formFields);
 
         return redirect('/')->with('message', 'Recipe Created!');
+    }
+
+    public function UpdateRecipe(Request $request, Recipe $recipe) {
+        // dd($request);
+        $formFields = $request->validate([
+            'title' => 'required',
+            'type' => 'required',
+            'description' => 'required'
+        ]);
+
+        if($request->hasFile('image')) {
+            $formFields['image'] = strval($request->file('image')->store('image', 'public'));
+            // dd($request->file('image')->store('images', 'public'));
+        }
+
+        // dd($formFields);
+
+        $recipe->update($formFields);
+
+        return redirect('/')->with('message', 'Recipe Updated!');
     }
 }

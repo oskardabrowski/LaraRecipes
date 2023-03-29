@@ -10,7 +10,9 @@
     </div>
     <div>
         <a href="/recipe/{{ $recipe->id }}/edit">Edit</a>
-        <form action="" method="POST">
+        <form action="/recipe/{{ $recipe->id }}" method="POST">
+            @csrf
+            @method('DELETE')
             <button>Delete</button>
         </form>
     </div>

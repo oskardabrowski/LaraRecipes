@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RecipesController;
+use App\Http\Controllers\UserController;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RecipesController::class, 'index']);
 
+Route::get('/recipe/{recipe}/edit', [RecipesController::class, 'EditRecipe']);
+
+Route::put('/recipe/{recipe}', [RecipesController::class, 'UpdateRecipe']);
+
+Route::delete('/recipe/{recipe}', [RecipesController::class, 'DestroyRecipe']);
+
 Route::get('/recipe/{recipe}', [RecipesController::class, 'SingleRecipe']);
 
 Route::post('/create', [RecipesController::class, 'Save']);
 
 Route::get('/create', [RecipesController::class, 'Create']);
 
-Route::get('/register', function () {
-    return view('pages.register');
-});
+Route::post('/register', [UserController::class, 'CreateUser']);
+
+Route::post('/logout', [UserController::class, 'logout']);
+
+Route::post('/login', [UserController::class, 'authenticate']);
+
+Route::get('/login', [UserController::class, 'login']);
+
+Route::get('/register', [UserController::class, 'registerUser']);
