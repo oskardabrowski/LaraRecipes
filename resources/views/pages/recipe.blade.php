@@ -8,13 +8,15 @@
             <p>{{ $recipe['description'] }}</p>
         </div>
     </div>
-    <div>
-        <a href="/recipe/{{ $recipe->id }}/edit">Edit</a>
-        <form action="/recipe/{{ $recipe->id }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button>Delete</button>
-        </form>
-    </div>
+    @auth
+        <div>
+            <a href="/recipe/{{ $recipe->id }}/edit">Edit</a>
+            <form action="/recipe/{{ $recipe->id }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button>Delete</button>
+            </form>
+        </div>
+    @endauth
     <x-footer />
 </x-body>

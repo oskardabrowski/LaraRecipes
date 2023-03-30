@@ -44,12 +44,15 @@ class RecipesController extends Controller
             'description' => 'required'
         ]);
 
+        $formFields['user_id'] = auth()->id();
+
         if($request->hasFile('image')) {
             $formFields['image'] = strval($request->file('image')->store('image', 'public'));
             // dd($request->file('image')->store('images', 'public'));
         }
 
         // dd($formFields);
+
 
         Recipe::create($formFields);
 
@@ -58,16 +61,21 @@ class RecipesController extends Controller
 
     public function UpdateRecipe(Request $request, Recipe $recipe) {
         // dd($request);
+        if($recipe->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action');
+        }
+
         $formFields = $request->validate([
             'title' => 'required',
             'type' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
         if($request->hasFile('image')) {
             $formFields['image'] = strval($request->file('image')->store('image', 'public'));
             // dd($request->file('image')->store('images', 'public'));
         }
+
 
         // dd($formFields);
 

@@ -13,6 +13,10 @@ class UserController extends Controller
         return view('pages.register');
     }
 
+    public function userProfile() {
+        return view('pages.profile', ['recipes' => auth()->user()->recipes()->get()]);
+    }
+
     public function CreateUser(Request $request) {
         $formFields = $request->validate([
             'email' => ['required', 'email', Rule::unique('users', 'email')],
